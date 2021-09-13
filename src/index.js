@@ -1,13 +1,16 @@
-import _ from 'lodash';
 import './style.css';
 
-function component() {
-  const element = document.createElement('div');
+let btn = document.getElementById('btn');
 
-  // Lodash, currently included via a script, is required for this line to work
-  element.innerHTML = _.join(['Hello', 'webpack'], ' ');
-
-  return element;
+function add() {
+  let autor = document.getElementById('autor');
+  let title = document.getElementById('title');
+  let books = document.getElementById('books');
+  
+  books.appendChild(autor);
+// document.body.appendChild(books);
 }
 
-document.body.appendChild(component());
+btn.addEventListener('click',add);
+
+
