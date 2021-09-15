@@ -1,31 +1,52 @@
 let btn = document.getElementById('btn');
 
-function deleteBook(event) {
-  event.currentTarget;
+let bookList = [];
+
+function saveBooks() {
+  window.localStorage.setItem('awesomebooks',JSON.stringify(bookList));
+}
+
+function loadBooks() {
+  bookList = JSON.parse(window.localStorage.getItem('awesomebooks'));
+}
+
+function displayBooks() {
+  let books = document.getElementById('books');
+  books.innerHTML = '';
+
+  bookList.forEach(book => {
+    let autorText = document.createElement('p');
+    let titleText = document.createElement('p');
+    let deleteBtn = document.createElement('button');
+
+    deleteBtn.innerHTML = 'Delete';
+
+    autorText.innerHTML = book.bookAuthor;
+    titleText.innerHTML = book.bookTitle;
+    
+    books.appendChild(autorText);
+    books.appendChild(titleText);
+    books.appendChild(deleteBtn);
+  })
+}
+
+function deleteBook() {
 }
 
 function add() {
   let autor = document.getElementById('autor');
-  let title = document.getElementById('title');
-  let books = document.getElementById('books');
+  let title = document.getElementById('title')
 
-  autorText = document.createElement('p');
-  titleText = document.createElement('p');
-  deleteBtn = document.createElement('button');
+  const book = {
+    bookAuthor: autor.value,
+    bookTitle: title.value
+  }
 
-  deleteBtn.innerHTML = 'Delete';
+  bookList.push(book);
 
-  autorText.innerHTML = autor.value;
-  titleText.innerHTML = title.value;
+  saveBooks();
 
-  deleteBtn.addEventListener('click', deleteBook);
-
-
-
-  books.appendChild(autorText);
-  books.appendChild(titleText);
-  books.appendChild(deleteBtn);
-// document.body.appendChild(books);
+  displayBooks();
 }
 
 btn.addEventListener('click',add);
