@@ -3,25 +3,20 @@ let ids = 0;
 
 let bookList = [];
 
-function saveBooks() {
-  window.localStorage.setItem('awesomebooks',JSON.stringify(bookList));
-}
-
-function loadBooks() {
-  bookList = JSON.parse(window.localStorage.getItem('awesomebooks'));
-}
-
 function displayBooks() {
-  let books = document.getElementById('books');
+  const books = document.getElementById('books');
   books.innerHTML = '';
 
-  bookList.forEach(book => {
+  bookList.forEach((book) => {
     const bookDiv = document.createElement('div');
     const autorText = document.createElement('p');
     const titleText = document.createElement('p');
     const deleteBtn = document.createElement('button');
 
-    deleteBtn.addEventListener('click', deleteBook);
+    /* eslint-disable */
+    deleteBtn.addEventListener('click', deleteBook);    
+    /* eslint-enable */
+
     deleteBtn.innerHTML = 'Delete';
     bookDiv.id = book.id;
 
@@ -33,39 +28,55 @@ function displayBooks() {
     bookDiv.appendChild(deleteBtn);
 
     books.appendChild(bookDiv);
-  })
+  });
+}
+
+function loadBooks() {
+  const local = window.localStorage.getItem('awesomebooks');
+
+  if (local != null) {
+    bookList = JSON.parse(local);
+  }
+}
+
+function update() {
+  loadBooks();
+  displayBooks();
+}
+
+function saveBooks() {
+  window.localStorage.setItem('awesomebooks', JSON.stringify(bookList));
 }
 
 function deleteBook(event) {
   const targetDiv = event.currentTarget.parentElement;
-  let divId = targetDiv.id; 
+  const divId = targetDiv.id;
 
-  let filter = bookList.filter(book => book.id != divId);
+  const filter = bookList.filter((book) => book.id !== divId);
   bookList = filter;
 
   saveBooks();
-
-  displayBooks(); 
-  console.log(filter);
+  displayBooks();
 }
 
+window.addEventListener('load', update);
+
 function add() {
-  let autor = document.getElementById('autor');
-  let title = document.getElementById('title')
+  const autor = document.getElementById('autor');
+  const title = document.getElementById('title');
 
   const book = {
     bookAuthor: autor.value,
     bookTitle: title.value,
-    id: "id" + ids
-  }
+    id: `id${ids}`,
+  };
 
-  ids++;
+  ids += 1;
 
   bookList.push(book);
 
   saveBooks();
-
   displayBooks();
 }
 
-btn.addEventListener('click',add);
+btn.addEventListener('click', add);
