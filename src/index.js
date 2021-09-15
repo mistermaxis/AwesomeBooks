@@ -1,4 +1,4 @@
-let btn = document.getElementById('btn');
+const btn = document.getElementById('btn');
 
 let bookList = [];
 
@@ -16,10 +16,10 @@ function displayBooks() {
 //  let ids = 0;
 
   bookList.forEach(book => {
-    let bookDiv = document.createElement('div');
-    let autorText = document.createElement('p');
-    let titleText = document.createElement('p');
-    let deleteBtn = document.createElement('button');
+    const bookDiv = document.createElement('div');
+    const autorText = document.createElement('p');
+    const titleText = document.createElement('p');
+    const deleteBtn = document.createElement('button');
 
     deleteBtn.addEventListener('click', deleteBook);
     deleteBtn.innerHTML = 'Delete';
@@ -37,8 +37,9 @@ function displayBooks() {
   })
 }
 
-function deleteBook() {
-
+function deleteBook(event) {
+  const targetDiv = event.currentTarget.parentElement;
+  
 //  bookList.filter();
 }
 
