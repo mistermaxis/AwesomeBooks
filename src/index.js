@@ -15,18 +15,22 @@ function displayBooks() {
   books.innerHTML = '';
 
   bookList.forEach(book => {
+    let bookDiv = document.createElement('div');
     let autorText = document.createElement('p');
     let titleText = document.createElement('p');
     let deleteBtn = document.createElement('button');
 
+    deleteBtn.addEventListener('click', deleteBook);
     deleteBtn.innerHTML = 'Delete';
 
     autorText.innerHTML = book.bookAuthor;
     titleText.innerHTML = book.bookTitle;
-    
-    books.appendChild(autorText);
-    books.appendChild(titleText);
-    books.appendChild(deleteBtn);
+
+    bookDiv.appendChild(autorText);
+    bookDiv.appendChild(titleText);
+    bookDiv.appendChild(deleteBtn);
+
+    books.appendChild(bookDiv);
   })
 }
 
