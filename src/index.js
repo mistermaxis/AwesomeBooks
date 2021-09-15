@@ -13,6 +13,7 @@ function loadBooks() {
 function displayBooks() {
   let books = document.getElementById('books');
   books.innerHTML = '';
+//  let ids = 0;
 
   bookList.forEach(book => {
     let bookDiv = document.createElement('div');
@@ -22,6 +23,8 @@ function displayBooks() {
 
     deleteBtn.addEventListener('click', deleteBook);
     deleteBtn.innerHTML = 'Delete';
+//    deleteBtn.id = "id" + ids;
+//    ids++;
 
     autorText.innerHTML = book.bookAuthor;
     titleText.innerHTML = book.bookTitle;
@@ -35,6 +38,8 @@ function displayBooks() {
 }
 
 function deleteBook() {
+
+//  bookList.filter();
 }
 
 function add() {
@@ -54,5 +59,3 @@ function add() {
 }
 
 btn.addEventListener('click',add);
-
-
