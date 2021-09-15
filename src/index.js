@@ -1,4 +1,5 @@
 const btn = document.getElementById('btn');
+let ids = 0;
 
 let bookList = [];
 
@@ -13,7 +14,6 @@ function loadBooks() {
 function displayBooks() {
   let books = document.getElementById('books');
   books.innerHTML = '';
-//  let ids = 0;
 
   bookList.forEach(book => {
     const bookDiv = document.createElement('div');
@@ -23,8 +23,7 @@ function displayBooks() {
 
     deleteBtn.addEventListener('click', deleteBook);
     deleteBtn.innerHTML = 'Delete';
-//    deleteBtn.id = "id" + ids;
-//    ids++;
+    bookDiv.id = book.id;
 
     autorText.innerHTML = book.bookAuthor;
     titleText.innerHTML = book.bookTitle;
@@ -39,8 +38,15 @@ function displayBooks() {
 
 function deleteBook(event) {
   const targetDiv = event.currentTarget.parentElement;
-  
-//  bookList.filter();
+  let divId = targetDiv.id; 
+
+  let filter = bookList.filter(book => book.id != divId);
+  bookList = filter;
+
+  saveBooks();
+
+  displayBooks(); 
+  console.log(filter);
 }
 
 function add() {
@@ -49,8 +55,11 @@ function add() {
 
   const book = {
     bookAuthor: autor.value,
-    bookTitle: title.value
+    bookTitle: title.value,
+    id: "id" + ids
   }
+
+  ids++;
 
   bookList.push(book);
 
