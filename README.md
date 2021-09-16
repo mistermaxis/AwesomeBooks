@@ -4,8 +4,6 @@
 
 > A web app to store books.
 
-![screenshot](./app_screenshot.png)
-
 The app allows you to add, store and remove books.
 
 ## Built With
