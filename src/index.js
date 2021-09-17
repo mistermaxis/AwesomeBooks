@@ -7,14 +7,17 @@ function Book(title, autor, id) {
 const btn = document.getElementById('btn');
 let ids = 0;
 
-let bookList = [];
+//let BooksList.bookList = [];
 
 class BooksList {
-  static displayBooks() {
-    const books = document.getElementById('books');
-    books.innerHTML = '';
+  static bookList = [];
 
-    bookList.forEach((book) => {
+  static displayBooks() {
+    if (BooksList.bookList !== undefined) {
+      const books = document.getElementById('books');
+      books.innerHTML = '';
+
+      BooksList.bookList.forEach((book) => {
       const bookDiv = document.createElement('div');
       const autorText = document.createElement('p');
       const titleText = document.createElement('p');
@@ -36,13 +39,14 @@ class BooksList {
 
       books.appendChild(bookDiv);
     });
+    }
   }
 
   static loadBooks() {
     const local = window.localStorage.getItem('awesomebooks');
 
     if (local != null) {
-      bookList = JSON.parse(local);
+      BooksList.bookList = JSON.parse(local);
     }
   }
 
@@ -52,15 +56,15 @@ class BooksList {
   }
 
   static saveBooks() {
-    window.localStorage.setItem('awesomebooks', JSON.stringify(bookList));
+    window.localStorage.setItem('awesomebooks', JSON.stringify(BooksList.bookList));
   }
 
   static deleteBook(event) {
     const targetDiv = event.currentTarget.parentElement;
     const divId = targetDiv.id;
 
-    const filter = bookList.filter((book) => book.id !== divId);
-    bookList = filter;
+    const filter = BooksList.bookList.filter((book) => book.id !== divId);
+    BooksList.bookList = filter;
 
     BooksList.saveBooks();
     BooksList.displayBooks();
@@ -74,7 +78,7 @@ class BooksList {
 
     ids += 1;
 
-    bookList.push(book);
+    BooksList.bookList.push(book);
 
     BooksList.saveBooks();
     BooksList.displayBooks();
