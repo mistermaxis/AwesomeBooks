@@ -7,7 +7,7 @@ function Book(title, autor, id) {
 const btn = document.getElementById('btn');
 let ids = 0;
 
-//let BooksList.bookList = [];
+// let BooksList.bookList = [];
 
 class BooksList {
   static bookList = [];
@@ -18,27 +18,27 @@ class BooksList {
       books.innerHTML = '';
 
       BooksList.bookList.forEach((book) => {
-      const bookDiv = document.createElement('div');
-      const autorText = document.createElement('p');
-      const titleText = document.createElement('p');
-      const deleteBtn = document.createElement('button');
+        const bookDiv = document.createElement('div');
+        const autorText = document.createElement('p');
+        const titleText = document.createElement('p');
+        const deleteBtn = document.createElement('button');
 
-      /* eslint-disable */
+        /* eslint-disable */
       deleteBtn.addEventListener('click', BooksList.deleteBook);    
       /* eslint-enable */
 
-      deleteBtn.innerHTML = 'Delete';
-      bookDiv.id = book.id;
+        deleteBtn.innerHTML = 'Delete';
+        bookDiv.id = book.id;
 
-      autorText.innerHTML = book.bookAuthor;
-      titleText.innerHTML = book.bookTitle;
+        autorText.innerHTML = book.bookAuthor;
+        titleText.innerHTML = book.bookTitle;
 
-      bookDiv.appendChild(autorText);
-      bookDiv.appendChild(titleText);
-      bookDiv.appendChild(deleteBtn);
+        bookDiv.appendChild(autorText);
+        bookDiv.appendChild(titleText);
+        bookDiv.appendChild(deleteBtn);
 
-      books.appendChild(bookDiv);
-    });
+        books.appendChild(bookDiv);
+      });
     }
   }
 
