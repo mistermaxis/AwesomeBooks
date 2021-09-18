@@ -7,46 +7,40 @@ function Book(title, autor, id) {
 const btn = document.getElementById('btn');
 let ids = 0;
 
-// let BooksList.bookList = [];
+let bookList = [];
 
 class BooksList {
-  static bookList = [];
-
   static displayBooks() {
-    if (BooksList.bookList !== undefined) {
-      const books = document.getElementById('books');
-      books.innerHTML = '';
+    const books = document.getElementById('books');
+    books.innerHTML = '';
 
-      BooksList.bookList.forEach((book) => {
-        const bookDiv = document.createElement('div');
-        const autorText = document.createElement('p');
-        const titleText = document.createElement('p');
-        const deleteBtn = document.createElement('button');
+    bookList.forEach((book) => {
+      const bookDiv = document.createElement('div');
+      bookDiv.classList.add('bookItem');
 
-        /* eslint-disable */
+      const bookText = document.createElement('span');
+      const deleteBtn = document.createElement('button');
+
+      /* eslint-disable */
       deleteBtn.addEventListener('click', BooksList.deleteBook);    
       /* eslint-enable */
 
-        deleteBtn.innerHTML = 'Delete';
-        bookDiv.id = book.id;
+      deleteBtn.innerHTML = 'Delete';
+      bookDiv.id = book.id;
 
-        autorText.innerHTML = book.bookAuthor;
-        titleText.innerHTML = book.bookTitle;
+      bookText.innerHTML = '\"' + book.bookAuthor + '\" by ' + book.bookTitle;
+      bookDiv.appendChild(bookText);
+      bookDiv.appendChild(deleteBtn);
 
-        bookDiv.appendChild(autorText);
-        bookDiv.appendChild(titleText);
-        bookDiv.appendChild(deleteBtn);
-
-        books.appendChild(bookDiv);
-      });
-    }
+      books.appendChild(bookDiv);
+    });
   }
 
   static loadBooks() {
     const local = window.localStorage.getItem('awesomebooks');
 
     if (local != null) {
-      BooksList.bookList = JSON.parse(local);
+      bookList = JSON.parse(local);
     }
   }
 
@@ -56,15 +50,15 @@ class BooksList {
   }
 
   static saveBooks() {
-    window.localStorage.setItem('awesomebooks', JSON.stringify(BooksList.bookList));
+    window.localStorage.setItem('awesomebooks', JSON.stringify(bookList));
   }
 
   static deleteBook(event) {
     const targetDiv = event.currentTarget.parentElement;
     const divId = targetDiv.id;
 
-    const filter = BooksList.bookList.filter((book) => book.id !== divId);
-    BooksList.bookList = filter;
+    const filter = bookList.filter((book) => book.id !== divId);
+    bookList = filter;
 
     BooksList.saveBooks();
     BooksList.displayBooks();
@@ -78,7 +72,7 @@ class BooksList {
 
     ids += 1;
 
-    BooksList.bookList.push(book);
+    bookList.push(book);
 
     BooksList.saveBooks();
     BooksList.displayBooks();
