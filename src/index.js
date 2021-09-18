@@ -28,7 +28,7 @@ class BooksList {
       deleteBtn.innerHTML = 'Delete';
       bookDiv.id = book.id;
 
-      bookText.innerHTML = '\"' + book.bookAuthor + '\" by ' + book.bookTitle;
+      bookText.innerHTML = `"${book.bookAuthor}" by ${book.bookTitle}`;
       bookDiv.appendChild(bookText);
       bookDiv.appendChild(deleteBtn);
 
