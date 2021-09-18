@@ -8,13 +8,21 @@
     <title>Awesome Books</title>
 </head>
 <body>
-    <h1>Awesome Books!</h1>
-    <div id="books"></div>
-    <form>
-        <input type="text" name="autor" id="autor">
-        <input type="text" name="title" id="title">
-        <button type="button" id="btn">Add</button>
-    </form>
+    <div class="container">
+        <span id="time-stamp"></span>
+    </div>
+    <div class="container">
+        <div id="list" class>
+            <h2>Awesome Books!</h2>
+            <div id="books"></div>
+        </div>
+        <div id="add" class="addbook">
+            <h2>Add a new book</h2>
+            <input type="text" name="autor" id="autor">
+            <input type="text" name="title" id="title">
+            <button type="button" id="btn">Add</button>
+        </div>
+    </div>
     <script src="index.js"></script>
 </body>
 </html>
