@@ -1,3 +1,12 @@
+/* eslint-disable */
+const { DateTime } = luxon;    
+/* eslint-enable */
+
+const localTime = DateTime.local();
+const timestamp = document.getElementById('time-stamp');
+
+timestamp.innerHTML = `${localTime.toLocaleString(DateTime.DATE_FULL)}, ${localTime.toLocaleString(DateTime.TIME_WITH_SECONDS)}`;
+
 function Book(title, autor, id) {
   this.bookTitle = title;
   this.bookAuthor = autor;
@@ -82,3 +91,43 @@ class BooksList {
 window.addEventListener('load', BooksList.update);
 
 btn.addEventListener('click', BooksList.add);
+
+function ShowList() {
+  const list = document.getElementById('list');
+  list.classList.add('show');
+  list.classList.remove('hide');
+  const add = document.getElementById('add');
+  add.classList.add('hide');
+  add.classList.remove('show');
+  const info = document.getElementById('info');
+  info.classList.add('hide');
+  info.classList.remove('show');
+}
+
+function ShowAdd() {
+  const list = document.getElementById('list');
+  list.classList.add('hide');
+  list.classList.remove('show');
+  const add = document.getElementById('add');
+  add.classList.add('show');
+  add.classList.remove('hide');
+  const info = document.getElementById('info');
+  info.classList.add('hide');
+  info.classList.remove('show');
+}
+
+function ShowInfo() {
+  const list = document.getElementById('list');
+  list.classList.add('hide');
+  list.classList.remove('show');
+  const add = document.getElementById('add');
+  add.classList.add('hide');
+  add.classList.remove('show');
+  const info = document.getElementById('info');
+  info.classList.add('show');
+  info.classList.remove('hide');
+}
+
+document.getElementById('link-list').addEventListener('click', ShowList);
+document.getElementById('link-add').addEventListener('click', ShowAdd);
+document.getElementById('link-info').addEventListener('click', ShowInfo);
